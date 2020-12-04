@@ -40,32 +40,32 @@ public class ApiStepDefs {
                                .when()
                                        .get(url);
 
-
     }
-
     @Then("status code should be {int}")
     public void status_code_should_be(int statusCode) {
 
         Assert.assertEquals(statusCode,response.statusCode());
-
     }
 
     @Then("the information about current user from api and database should match")
     public void the_information_about_current_user_from_api_and_database_should_match() {
         //API -DB
-        //get information from database
+        //get information from database SQL
         String query = "select id,firstname,lastname,role\n" +
                 "from users\n" +
                 "where email ='"+emailGlobal+"';";
 
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
         System.out.println("rowMap = " + rowMap);
+
         long expectedId = (long) rowMap.get("id");
         String expectedFirstName = (String) rowMap.get("firstname");
         String expectedLastName = (String) rowMap.get("lastname");
         String expectedRole = (String) rowMap.get("role");
 
-        //get information from api
+
+
+        //get information from API
         JsonPath jsonPath = response.jsonPath();
 
         long actualId = jsonPath.getLong("id");
