@@ -18,6 +18,7 @@ import static io.restassured.RestAssured.given;
 
 public class ApiStepDefs {
 
+
     String token;
     Response response;
     String emailGlobal;
